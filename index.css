@@ -48,6 +48,7 @@ body {
     align-items: center;
     background-color: darkgray;
     box-shadow: inset black 0px 0px 10px;
+    text-align: center;
 }
 
 .anim-fade-in-out {
