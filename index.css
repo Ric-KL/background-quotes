@@ -24,7 +24,6 @@ body {
     align-items: center;
     min-height: 640px;
     min-width: 360px;
-    aspect-ratio: 16 / 9;
 }
 
 .main-content {
@@ -32,11 +31,21 @@ body {
     width: 100%;
     height: 80%;
     box-shadow: inset black 0px 0px 10px;
-    background-color: lightcyan;
+    background: radial-gradient(#43cea2, #185a9d);
+    background-size: 200%;
     display: flex;
     justify-content: center;
     align-items: center;
+    animation-name: gradient-wheel;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
 
+}
+
+.quote-content {
+    padding: 20px;
+    width: 60%;
+    text-align: center;
 }
 
 .header-footer {
@@ -54,6 +63,7 @@ body {
 .anim-fade-in-out {
     animation-name: fade-in-out;
     animation-duration: 30s;
+    animation-timing-function: ease;
     animation-iteration-count: infinite;
 }
 
@@ -81,4 +91,18 @@ body {
         opacity: 0%;
     }
 
+}
+
+@keyframes gradient-wheel {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50% ;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }

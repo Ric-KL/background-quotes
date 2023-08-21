@@ -1,4 +1,4 @@
-const api_url = "https://zenquotes.io/api/quotes/";
+const api_url = "https://api.quotable.io/random";
 
 const authorTarget = document.querySelector("#authorTag");
 const quoteTarget = document.querySelector("#quoteTag");
@@ -7,30 +7,28 @@ async function getapi(url) {
   const response = await fetch(url);
   console.log(response);
   var data = await response.json();
-  console.log(data[0]);
-  return data[0];
+  outputArr = [];
+  outputArr.push(data.content);
+  outputArr.push(data.author);
+  return outputArr;
 }
 
-function writeAuthor(obj) {
-  let fetchAuthor = obj["a"];
+function writeAuthor(arr) {
+  let fetchAuthor = String(arr[1]);
   authorTarget.innerHTML = "AUTHOR: " + fetchAuthor;
 }
 
-function writeQuote(obj) {
-  let fetchQuote = obj["q"];
+function writeQuote(arr) {
+  let fetchQuote = String(arr[0]);
   quoteTarget.innerHTML = fetchQuote;
 }
 
-function main() {
-  let data = {}
-  try {
-    data = getapi(api_url);
-  }
-  catch {
-    data = {"q":"error", "a": "error"};
-    console.log("API failed to fetch data")
-  }
+async function main() {
+  let data = await getapi(api_url);
+  console.log(data)
   writeAuthor(data);
   writeQuote(data);
+  setTimeout(main,30000)
 }
+
 main()
